@@ -1,0 +1,34 @@
+body {
+  background-color: #252830;
+  color: #ffffff!important;
+}
+
+.sidebar-sticky {
+  margin-top: 20%;
+  background-color: #252830;
+  color: #ffffff!important;
+}
+
+.sidebar-sticky a {
+  color: #ffffff!important;
+}
+
+nav.col-md-2 {
+  background-color: #252830!important;
+}
+
+.navbar {
+  background-color: #434857!important;
+}
+
+.content {
+  width: 70%!important;
+  margin: auto;
+
+}
+
+/* ---------------------------- */
+
+.table-dark {
+  background-color: #252830!important;
+}
