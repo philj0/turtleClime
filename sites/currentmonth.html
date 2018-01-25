@@ -34,9 +34,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="extendedoverview.html">
-                  <span data-feather="menu"></span>
-                  Extended Overview
+                <a class="nav-link active" href="currentmonth.html">
+                  <span data-feather="database"></span>
+                  Current month <span class="sr-only">(current)</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -51,15 +51,9 @@
             </h6>
             <ul class="nav flex-column mb-2">
               <li class="nav-item">
-                <a class="nav-link" href="currentmonth.html">
-                  <span data-feather="database"></span>
-                  Current month
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="checkstatus.html">
+                <a class="nav-link" href="checkstatus.html">
                   <span data-feather="activity"></span>
-                  Check Status <span class="sr-only">(current)</span>
+                  Check Status
                 </a>
               </li>
               <li class="nav-item">
@@ -82,52 +76,8 @@
             <h1 class="h2">Current Month</h1>
           </div>
           <div class="table-responsive">
-            <table class="table table-dark table-hover">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Temperature</th>
-                  <th>Humidity</th>
-                  <th>Light on</th>
-                  <th>Light off</th>
-                  <th>Timestamp</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>42°C</td>
-                  <td>70%</td>
-                  <td>08:30</td>
-                  <td>17:30</td>
-                  <td>2018-01-18 09:18:18.000</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>47°C</td>
-                  <td>70%</td>
-                  <td>08:30</td>
-                  <td>17:30</td>
-                  <td>2018-01-19 09:18:18.000</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>44°C</td>
-                  <td>70%</td>
-                  <td>08:30</td>
-                  <td>17:30</td>
-                  <td>2018-01-20 09:18:18.000</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>44°C</td>
-                  <td>70%</td>
-                  <td>08:30</td>
-                  <td>17:30</td>
-                  <td>2018-01-21 09:18:18.000</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="table">
+            </div>
           </div>
         </main>
       </div>
@@ -137,8 +87,25 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../js/jquery-slim.min.js"><\/script>')</script>
-    <script src="../js/popper.min.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
+    <script>
+    $(document).ready(function(){
+      function getTableData(test = 'test') {
+        $.ajax({
+          url:"../php/getCurrentMonth.php",
+          method:"POST",
+          data:{test},
+          dataType:"json",
+
+          success:function(table) {
+            $('.table').html(table.tableData);
+          }
+        });
+     }
+     getTableData();
+    });
+    </script>
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>

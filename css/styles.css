@@ -27,6 +27,10 @@ nav.col-md-2 {
 
 }
 
+.hum, .temp{
+  padding-top: 10%;
+  padding-bottom: 10%;
+}
 /* ---------------------------- */
 
 .table-dark {

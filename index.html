@@ -34,9 +34,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="sites/extendedoverview.html">
-                  <span data-feather="menu"></span>
-                  Extended Overview
+                <a class="nav-link" href="sites/currentmonth.html">
+                  <span data-feather="database"></span>
+                  Current month
                 </a>
               </li>
               <li class="nav-item">
@@ -50,12 +50,6 @@
               <span>Service</span>
             </h6>
             <ul class="nav flex-column mb-2">
-              <li class="nav-item">
-                <a class="nav-link" href="sites/currentmonth.html">
-                  <span data-feather="database"></span>
-                  Current month
-                </a>
-              </li>
               <li class="nav-item">
                 <a class="nav-link" href="sites/checkstatus.html">
                   <span data-feather="activity"></span>
@@ -85,27 +79,11 @@
             <div class="row">
               <div class="col-sm">
                 <h2>Temperature</h2>
-                <div class="clearfix">
-                  <div class="c100 p42 big red">
-                      <span>42°C</span>
-                      <div class="slice">
-                          <div class="bar"></div>
-                          <div class="fill"></div>
-                      </div>
-                  </div>
-                </div>
+                <div class="temp"></div>
               </div>
               <div class="col-sm">
                 <h2>Humidity</h2>
-                <div class="clearfix">
-                  <div class="c100 p70 big">
-                      <span>70%</span>
-                      <div class="slice">
-                          <div class="bar"></div>
-                          <div class="fill"></div>
-                      </div>
-                  </div>
-                </div>
+                <div class="hum"></div>
               </div>
             </div>
             <table class="table table-dark table-hover">
@@ -117,12 +95,12 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>08:30</td>
-                  <td>17:30</td>
+                  <td class="lightOn">00:00</td>
+                  <td class="lightOff">00:00</td>
                 </tr>
               </tbody>
             </table>
-            <p>Last Measurement at: 09:18</p>
+            <p>Last Measurement: <span class="timeStamp">00:00</span></p>
           </div>
         </main>
       </div>
@@ -131,9 +109,29 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery-slim.min.js"><\/script>')</script>
-    <script src="js/popper.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script>
+    $(document).ready(function(){
+      function getSimpleValues(test = 'test') {
+        $.ajax({
+          url:"php/getSimpleValues.php",
+          method:"POST",
+          data:{test},
+          dataType:"json",
+
+          success:function(data) {
+            $('.temp').html(data.temp);
+            $('.hum').html(data.hum);
+            $('.lightOn').html(data.lightOn);
+            $('.lightOff').html(data.lightOff);
+            $('.timeStamp').html(data.timeStamp);
+          }
+        });
+     }
+     getSimpleValues();
+    });
+    </script>
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>
