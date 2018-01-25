@@ -2,7 +2,7 @@
   if(isset($_POST['test'])){
     require 'inc/db.php';
 
-    $select = $pdo->prepare("SELECT ID, Timestamp, Action, Status, User from tc_log ");
+    $select = $pdo->prepare("SELECT ID, Timestamp, Action, Status, User from tc_log ORDER BY ID DESC LIMIT 100 ");
 
     $select->execute();
 
@@ -14,11 +14,11 @@
       $tableEnd ='</tbody></table>';
 
       foreach ($select as $row) {
-        $tableRows .='<tr><td>'.$row['ID'].'</td><td>'.$row['Timestamp'].'°C</td><td>'.$row['Action'].'%</td><td>'.$row['Status'].'</td><td>'.$row['User'].'</td></tr>';
+        $tableRows .='<tr><td>'.$row['ID'].'</td><td>'.$row['Timestamp'].'</td><td>'.$row['Action'].'</td><td>'.$row['Status'].'</td><td>'.$row['User'].'</td></tr>';
       }
     } else {
       $insert = $pdo->prepare("INSERT INTO tc_log (Action, Status, User) VALUES (?, ?, ?)");
-      $insert->execute(array('Read read Log', "ERROR", 'Admin'));
+      $insert->execute(array('Read Log', "ERROR", 'Admin'));
 
       $tableRows .='<tr><td>0</td><td>0°C</td><td>0%</td><td>0000-00-00 00:00:00</td><td>0000-00-00 00:00:00</td></tr>';
     }
