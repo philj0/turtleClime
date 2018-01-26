@@ -2,7 +2,7 @@
   if(isset($_POST['test'])){
     require 'inc/db.php';
 
-    $select = $pdo->prepare("SELECT ID, Timestamp, Action, Status, User from tc_log ORDER BY ID DESC LIMIT 100 ");
+    $select = $pdo->prepare("SELECT ID, Timestamp, Action, Status, User from tc_log ORDER BY ID DESC LIMIT 10 ");
 
     $select->execute();
 
@@ -20,10 +20,10 @@
       $insert = $pdo->prepare("INSERT INTO tc_log (Action, Status, User) VALUES (?, ?, ?)");
       $insert->execute(array('Read Log', "ERROR", 'Admin'));
 
-      $tableRows .='<tr><td>0</td><td>0°C</td><td>0%</td><td>0000-00-00 00:00:00</td><td>0000-00-00 00:00:00</td></tr>';
+      $tableRows ='<tr><td>0</td><td>0°C</td><td>0%</td><td>0000-00-00 00:00:00</td><td>0000-00-00 00:00:00</td></tr>';
     }
 
-    $tableData .= $tableStart.$tableRows.$tableEnd;
+    $tableData = $tableStart.$tableRows.$tableEnd;
 
     $table = array(
       'tableData' => $tableData,
