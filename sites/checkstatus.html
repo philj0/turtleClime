@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>turtleClime - Dashboard</title>
+    <title>turtleClime - Status</title>
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- Styles for dashboard template -->
@@ -76,7 +76,22 @@
             <h1 class="h2">Check Status</h1>
           </div>
           <div class="content">
-            <button type="button" class="btn btn-primary">checkStatus</button>
+            <table class="table table-dark table-hover">
+              <tbody>
+                <tr>
+                  <td>MySQL</td>
+                  <td><span class="badge badge-danger">Dead</span></td>
+                </tr>
+                <tr>
+                  <td>TC_Data</td>
+                  <td><span class="badge badge-danger">Dead</span></td>
+                </tr>
+                <tr>
+                  <td>TC_Log</td>
+                  <td><span class="badge badge-danger">Dead</span></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </main>
       </div>
@@ -86,8 +101,25 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../js/jquery-slim.min.js"><\/script>')</script>
-    <script src="../js/popper.min.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
+    <script>
+    $(document).ready(function(){
+      function checkStatus(status = 'status') {
+        $.ajax({
+          url:"../php/checkStatus.php",
+          method:"POST",
+          data:{status},
+          dataType:"json",
+
+          success:function(table) {
+            $('.table').html(table.tableData);
+          }
+        });
+     }
+     checkStatus();
+    });
+    </script>
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>
