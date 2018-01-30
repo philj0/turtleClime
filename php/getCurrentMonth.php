@@ -7,14 +7,14 @@
 
     if($select->rowCount() > 0) {
       $insert = $pdo->prepare("INSERT INTO tc_log (Action, Status, User) VALUES (?, ?, ?)");
-      $insert->execute(array('Read complete Month', "successful", 'Admin'));
+      $insert->execute(array('Read complete Month', "successful", $user));
 
       foreach ($select as $row) {
         $tableRows .='<tr><td>'.$row['ID'].'</td><td>'.$row['Temp'].'°C</td><td>'.$row['Light_On'].'</td><td>'.$row['Light_Off'].'</td><td>'.$row['Timestamp'].'</td></tr>';
       }
     } else {
       $insert = $pdo->prepare("INSERT INTO tc_log (Action, Status, User) VALUES (?, ?, ?)");
-      $insert->execute(array('Read complete Month', "ERROR", 'Admin'));
+      $insert->execute(array('Read complete Month', "ERROR", $user));
 
       $tableRows ='<tr><td>0</td><td>0°C</td><td>0000-00-00 00:00:00</td><td>0000-00-00 00:00:00</td><td>0000-00-00 00:00:00</td></tr>';
     }

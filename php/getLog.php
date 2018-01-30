@@ -8,7 +8,7 @@
 
     if($select->rowCount() > 0) {
       $insert = $pdo->prepare("INSERT INTO tc_log (Action, Status, User) VALUES (?, ?, ?)");
-      $insert->execute(array('Read Log', "successful", 'Admin'));
+      $insert->execute(array('Read Log', "successful", $user));
 
       $tableStart = '<table class="table table-dark table-hover"><thead><tr><th>ID</th><th>Timestamp</th><th>Action</th><th>Status</th><th>User</th></tr></thead><tbody>';
       $tableEnd ='</tbody></table>';
@@ -18,7 +18,7 @@
       }
     } else {
       $insert = $pdo->prepare("INSERT INTO tc_log (Action, Status, User) VALUES (?, ?, ?)");
-      $insert->execute(array('Read Log', "ERROR", 'Admin'));
+      $insert->execute(array('Read Log', "ERROR", $user));
 
       $tableRows ='<tr><td>0</td><td>0°C</td><td>0%</td><td>0000-00-00 00:00:00</td><td>0000-00-00 00:00:00</td></tr>';
     }
