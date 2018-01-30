@@ -2,7 +2,7 @@
   require 'inc/db.php';
 
   if(isset($_POST['test'])){
-    $select = $pdo->prepare("SELECT ID, Temp, Hum, Light_On, Light_Off, Timestamp from tc_data ORDER BY ID DESC LIMIT 1 ");
+    $select = $pdo->prepare("SELECT ID, Temp, Light_On, Light_Off, Timestamp from tc_data ORDER BY ID DESC LIMIT 1 ");
 
     $select->execute();
 
@@ -12,7 +12,6 @@
 
       foreach ($select as $row) {
         $temp = '<div class="clearfix"><div class="c100 p'.round($row['Temp']).' big red"><span>'.$row['Temp'].'°C</span><div class="slice"><div class="bar"></div><div class="fill"></div></div></div></div>';
-        $hum = '<div class="clearfix"><div class="c100 p'.$row['Hum'].' big"><span>'.$row['Hum'].'%</span><div class="slice"><div class="bar"></div><div class="fill"></div></div></div></div>';
         $lightOn = date( "H:i:s", strtotime($row['Light_On']));
         $lightOff = date( "H:i:s", strtotime($row['Light_Off']));
         $timeStamp = date( "d-m-Y H:i:s", strtotime($row['Timestamp']));
@@ -22,7 +21,6 @@
       $insert->execute(array('Read', "ERROR", 'Admin'));
 
       $temp = '<div class="clearfix"><div class="c100 p0 big red"><span>0°C</span><div class="slice"><div class="bar"></div><div class="fill"></div></div></div></div>';
-      $hum = '<div class="clearfix"><div class="c100 p0 big"><span>0%</span><div class="slice"><div class="bar"></div><div class="fill"></div></div></div></div>';
       $lightOn = '00:00:00';
       $lightOff = '0:00:00';
       $timeStamp = '00-00-0000 00:00:00';
@@ -30,7 +28,6 @@
 
     $data = array(
      'temp' => $temp,
-     'hum' => $hum,
      'lightOn' => $lightOn,
      'lightOff' => $lightOff,
      'timeStamp' => $timeStamp,
@@ -40,7 +37,5 @@
 
     # close connection
     $pdo = null;
-
   }
-
 ?>

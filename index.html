@@ -77,14 +77,8 @@
           </div>
           <div class="content">
             <div class="row">
-              <div class="col-sm">
-                <h2>Temperature</h2>
-                <div class="temp"></div>
-              </div>
-              <div class="col-sm">
-                <h2>Humidity</h2>
-                <div class="hum"></div>
-              </div>
+              <h2>Temperature</h2>
+              <div class="temp"></div>
             </div>
             <table class="table table-dark table-hover">
               <thead>
@@ -115,14 +109,13 @@
     $(document).ready(function(){
       function getSimpleValues(test = 'test') {
         $.ajax({
-          url:"php/getSimpleValues.php",
+          url:"php/getDashboard.php",
           method:"POST",
           data:{test},
           dataType:"json",
 
           success:function(data) {
             $('.temp').html(data.temp);
-            $('.hum').html(data.hum);
             $('.lightOn').html(data.lightOn);
             $('.lightOff').html(data.lightOff);
             $('.timeStamp').html(data.timeStamp);
