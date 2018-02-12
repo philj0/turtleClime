@@ -49,7 +49,7 @@ Please read [CONTRIBUTING.md](/.github/CODE_OF_CONDUCT.md) for details on our co
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
 
 
 ## Acknowledgments
